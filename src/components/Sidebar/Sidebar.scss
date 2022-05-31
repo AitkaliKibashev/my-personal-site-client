@@ -1,0 +1,142 @@
+@import "../../style/vars";
+@import "../../style/mixins";
+
+.sidebar {
+  padding-top: 40px;
+  position: fixed;
+  width: $sidebar-width;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  @include breakpoint($md-width) {
+    padding: 40px;
+    width: 280px;
+    top: 0;
+    opacity: 0;
+    transform: translateX(-100%);
+    z-index: 1000;
+
+    transition: all 0.4s ease-in-out;
+
+    background-color: white;
+
+    &.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 1px;
+
+    background: radial-gradient(50% 50% at 50% 50%, #e2e1e1 0%, rgba(219, 219, 219, 0) 100%);
+  }
+
+  .sidebar__nav {
+    text-align: center;
+    margin-bottom: 50px;
+    width: 100%;
+    display: none;
+
+    @include breakpoint($md-width) {
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+      margin: -20px 0;
+
+      li {
+        font-size: 18px;
+        margin: 20px 0;
+        cursor: pointer;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .profile {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70%;
+
+    @include breakpoint($md-width) {
+      margin-bottom: 30px;
+    }
+
+    .profile__image {
+      margin-bottom: 32px;
+      width: 120px;
+      height: 120px;
+
+      border-radius: 50%;
+      overflow: hidden;
+
+      @include breakpoint($md-width) {
+        margin-bottom: 10px;
+        width: 60px;
+        height: 60px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+      }
+    }
+
+    .profile__name {
+      margin-bottom: 20px;
+
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    .profile__text {
+      max-width: 245px;
+    }
+  }
+
+  .sidebar__links {
+    color: #4A3AFF;
+
+    @include breakpoint($md-width) {
+      margin-bottom: 50px;
+    }
+
+    a {
+      margin-right: 24px;
+
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

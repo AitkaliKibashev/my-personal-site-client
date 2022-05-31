@@ -1,16 +1,29 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, FC} from 'react';
+import './common.scss'
 
-interface InputProps {
-    onChange: () => void,
+interface TextareaProps {
+    placeholder: string,
+    name?: string,
+    isRequired: boolean,
+    value: string,
+    setValue: (value: string) => void
 }
 
-const Input:React.FC<InputProps> = ({onChange}) => {
-    const [value, setValue] = useState('')
-    return (
-        <>
-            <textarea className="textarea" placeholder="Напишите пост..."/>
-        </>
-    );
-};
+const Textarea: FC<TextareaProps> = ({placeholder, isRequired, name, setValue, value}) => {
+    const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+       setValue(e.target.value)
+    }
 
-export default Input;
+    return (
+        <textarea
+            className='textarea'
+            placeholder={placeholder}
+            value={value}
+            required={isRequired}
+            name={name}
+            onChange={onChange}
+        />
+    )
+}
+
+export default Textarea

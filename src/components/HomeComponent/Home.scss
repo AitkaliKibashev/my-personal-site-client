@@ -1,0 +1,30 @@
+@import "../../style/vars";
+@import "../../style/mixins";
+
+.section-title {
+  margin-bottom: 40px;
+}
+
+.home__add-post {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home__add-post__file-btn {
+  margin-left: 50px;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  @include breakpoint($sm-width) {
+    margin-left: 20px;
+  }
+}
+
+
+.section-subtitle {
+  font-size: 18px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,145 @@
+@import "../../style/vars";
+@import "../../style/mixins";
+
+.post {
+  margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+
+  background: #FFFFFF;
+  border-radius: 30px;
+
+  @include breakpoint($lg-width) {
+    flex-direction: column;
+  }
+
+  .post__image {
+    max-width: 250px;
+    width: 100%;
+
+    height: inherit;
+
+    border-radius: 25px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      border-radius: 25px;
+    }
+
+      @include breakpoint($lg-width) {
+        max-width: none;
+      }
+  }
+
+  .post__row-content {
+    width: 100%;
+    padding: 40px;
+
+    @include breakpoint($sm-width) {
+      padding: 10px;
+    }
+  }
+
+  .post__header {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @include breakpoint($sm-width) {
+      flex-direction: column;
+      align-items: normal;
+    }
+  }
+
+  .post__header__end {
+    margin-top: 1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    @include breakpoint($sm-width) {
+      justify-content: flex-end;
+
+      .post__date {
+        margin-right: auto;
+      }
+    }
+  }
+
+  .post__date {
+    margin-right: 25px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #A5A5A5;
+  }
+
+  .post__title {
+    margin-right: 30px;
+
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+
+    @include breakpoint($sm-width) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .post__text {
+    margin-bottom: 40px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.03em;
+
+    @include breakpoint($sm-width) {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .post__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include breakpoint($sm-width) {
+      flex-direction: column;
+      align-items: normal;
+    }
+
+    .post__tags {
+      display: flex;
+      margin: 0 -10px;
+      margin-left: -17px;
+      flex-wrap: wrap;
+
+      p {
+        margin: 10px;
+      }
+
+      @include breakpoint($sm-width) {
+        margin: -5px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+}
+

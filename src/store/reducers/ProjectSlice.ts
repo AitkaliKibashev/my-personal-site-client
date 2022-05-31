@@ -1,53 +1,59 @@
-import {Post} from '../../models/Post'
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Project} from "../../models/Project";
 
-interface PostState {
-    posts: Post[],
-    post: Post | null,
+interface ProjectState {
+    projects: Project[],
+    editingProject: Project | null,
     isLoading: boolean,
     error: null | string,
     pages: number
 }
 
-const initialState: PostState = {
-    posts: [],
-    post: null,
+const initialState: ProjectState = {
+    projects: [],
+    editingProject: null,
     isLoading: false,
     error: null,
     pages: 1
 }
 
-export const postSlice = createSlice({
-    name: 'post',
+export const projectSlice = createSlice({
+    name: 'project',
     initialState,
     reducers: {
-        postsFetching(state) {
+        projectsFetching(state) {
             state.isLoading = true
         },
-        postsSuccess(state, action: PayloadAction<any>) {
+        projectsFetchingSuccess(state, action: PayloadAction<any>) {
             state.isLoading = false
             state.error = null
-            state.posts.push(...action.payload.posts)
+            state.projects.push(...action.payload.projects)
             state.pages = action.payload.pages
         },
-        postsError(state, action: PayloadAction<string>) {
+        projectsFetchingError(state, action: PayloadAction<string>) {
             state.error = action.payload
             state.isLoading = false
         },
-        addPost(state, action: PayloadAction<Post>) {
-            state.posts.unshift(action.payload)
+        deleteProject(state, action: PayloadAction<number>) {
+            state.projects = state.projects.filter(project => project.id !== action.payload)
         },
-        deletePost(state, action: PayloadAction<number>) {
-            state.posts = state.posts.filter(post => post.id !== action.payload)
+        addProject(state, action: PayloadAction<Project>) {
+            state.projects.unshift(action.payload)
         },
-        setPost(state, action: PayloadAction<Post>) {
-            state.isLoading = false
-            state.post = action.payload
+        incrementLike(state, action: PayloadAction<number>) {
+            state.projects.forEach(project => {
+                if (project.id === action.payload ) {
+                    project.likes.push({ project: 1, id: 4, like: 1})
+                }
+            })
         },
-        clearPosts(state) {
-            state.posts = []
+        clearProjects(state) {
+            state.projects = []
+        },
+        setEditingProject(state, action: PayloadAction<Project | null>) {
+            state.editingProject = action.payload
         }
     }
 })
 
-export default postSlice.reducer
+export default projectSlice.reducer
