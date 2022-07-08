@@ -57,24 +57,23 @@ const Home:FC<HomeProps> = ({setSidebarOpen, query}) => {
     return (
         <section className="home" onClick={() => setSidebarOpen(false)}>
             <div className="container">
-                {isLoading && <Spinner />}
                 <div className="home__inner">
                     <h1 className="section-title">{query ? 'Результаты поиска' : 'Все посты'}</h1>
                     {postImage && <p className="helper-text">Название изображения: {postImage?.name}</p>}
                     {isAdmin && <AddPostBlock postImage={postImage} setPostImage={setPostImage}/>}
 
                     <div className="posts">
-                        {posts.length ?
-                            posts.map(post => <Post
-                                    key={post.id}
-                                    post={post}
-                                    tags={tags}
-                                />)
-                            :
+                        {!posts.length && !isLoading ?
                             <div className="no-posts">
                                 <h2 >Постов не найдено :(</h2>
                                 <button className="btn" onClick={() => navigate(-1)}>Вернуться назад</button>
                             </div>
+                            :
+                            posts.map(post => <Post
+                            key={post.id}
+                            post={post}
+                            tags={tags}
+                            />)
                         }
 
                     </div>

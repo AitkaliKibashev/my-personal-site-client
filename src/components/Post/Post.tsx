@@ -12,6 +12,7 @@ import {deletePost, incrementPostLike} from "../../store/reducers/actionCreators
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import Likes from "../common/Likes";
 import {postSlice} from "../../store/reducers/PostSlice";
+import {APIUrl} from "../../api/API";
 
 interface PostProps {
     post: Post,
@@ -47,7 +48,7 @@ const PostItem: FC<PostProps> = ({post, tags}) => {
 
             {post.image &&
             <div className="post__image">
-                <img src={'https://api.kibashev.site' + post.image} alt={post?.title}/>
+                <img src={APIUrl + post.image} alt={post?.title}/>
             </div>}
 
             <div className="post__row-content">

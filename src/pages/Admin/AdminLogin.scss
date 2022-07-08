@@ -191,16 +191,21 @@
     color: #4A3AFF;
   }
 
-  &:hover {
-    span {
-      text-decoration: underline;
-    }
-  }
+
 
   .notification__close {
     position: absolute;
     top: 20px;
     right: 20px;
+
+    cursor: pointer;
+    transition: all 0.2s linear;
+
+    &:hover {
+      svg path {
+        stroke: #4a3aff;
+      }
+    }
   }
 
   .notification__inner {
@@ -208,6 +213,15 @@
     margin-left: 40px;
 
     font-size: 18px;
+
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+      span {
+        text-decoration: underline;
+      }
+    }
   }
 
   .notification__post-image {

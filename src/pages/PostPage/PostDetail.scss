@@ -54,6 +54,7 @@
   .post-detail__image {
     margin-bottom: 30px;
     width: 100%;
+    max-height: 450px;
 
     border-radius: 25px;
     overflow: hidden;
@@ -63,6 +64,7 @@
       height: 100%;
 
       object-fit: cover;
+      object-position: center;
     }
   }
 
@@ -112,7 +114,7 @@
       padding-left: 30px;
 
       font-style: italic;
-      font-size: 28px;
+      font-size: 24px;
 
       color: #6a6969;
       border-left: 2px solid #6a6969;
@@ -122,8 +124,8 @@
       }
     }
     
-    ul {
-      padding-left: 20px;
+    ul, ol {
+      padding: 20px 0 0 20px;
       font-size: 18px;
 
       li {

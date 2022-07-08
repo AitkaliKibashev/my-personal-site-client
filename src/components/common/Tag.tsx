@@ -12,12 +12,13 @@ const Tag: FC<TagProps> = ({title}) => {
     const queryState = useContext(QueryContext)
 
     const onClick = () => {
-        queryState.setQuery('tag:' + title)
+        console.log('tag:'.concat(title))
+        queryState.setQuery('tag:'.concat(title))
         navigate('/search')
     }
 
     return (
-        <p className="tag" onClick={onClick}>{title}</p>
+        <p className="tag" onClick={onClick}>#{title}</p>
     );
 };
 

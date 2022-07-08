@@ -59,6 +59,11 @@ export const postSlice = createSlice({
         addComment(state, action: PayloadAction<PostComment>) {
             state.post?.comments?.unshift(action.payload)
         },
+        deleteComment(state, action: PayloadAction<number>) {
+            if(state.post) {
+                state.post.comments = state.post?.comments?.filter(com => com.id !== action.payload)
+            }
+        },
         setNotifications(state, action: PayloadAction<PostNotification[]>) {
             state.postNotifications = action.payload
         },
@@ -72,6 +77,9 @@ export const postSlice = createSlice({
                 }
             })
         },
+        deleteNotification(state, action: PayloadAction<number>) {
+            state.postNotifications = state.postNotifications.filter(not => not.id !== action.payload)
+        }
     }
 })
 

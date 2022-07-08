@@ -215,3 +215,23 @@ export const readNotifications = (data: {is_read: boolean}, id: number) => async
         console.log(e)
     }
 }
+
+export const deleteNotification = (id: number) => async (dispatch: AppDispatch) => {
+    try {
+        await postNotificationAPI.deleteNotification(id)
+        dispatch(postSlice.actions.deleteNotification(id))
+    } catch (e) {
+        dispatch(postSlice.actions.postsError('Error occured'))
+        console.log(e)
+    }
+}
+
+export const deleteComment = (id: number) => async (dispatch: AppDispatch) => {
+    try {
+        await postAPI.deleteComment(id)
+        dispatch(postSlice.actions.deleteComment(id))
+    } catch (e) {
+        dispatch(postSlice.actions.postsError('Error occured'))
+        console.log(e)
+    }
+}

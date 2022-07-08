@@ -15,11 +15,13 @@ const Portfolio = () => {
 
     useEffect(() => {
         dispatch(fetchProjects(page))
+    }, [page, dispatch])
 
+    useEffect(() => {
         return () => {
             dispatch(projectSlice.actions.clearProjects())
         }
-    }, [page, dispatch])
+    }, [dispatch])
 
     useEffect(() => {
         if(isLoading) return
@@ -43,7 +45,6 @@ const Portfolio = () => {
                     <div className="projects">
                         {projects.map(project => <Project key={project.id} project={project}/>)}
                     </div>
-
                     {!isLoading && <div className="projects-end" ref={projectsEndRef}/>}
                     {isLoading && <Spinner />}
                 </div>

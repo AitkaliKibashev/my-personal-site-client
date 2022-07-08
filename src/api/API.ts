@@ -1,19 +1,19 @@
 import axios from "axios"
 import {PostNotification} from "../models/Post";
 
-const url = 'https://api.kibashev.site/api'
+export const APIUrl = 'https://octopus-app-hljps.ondigitalocean.app'
 
 
 export const postAPI = {
     fetchPosts: (page: number) => {
-        return axios.get(`${url}/post/?page=${page}`)
+        return axios.get(`${APIUrl}/api/post/?page=${page}`)
     },
     queryPosts: (page: number, query: string) => {
-        return axios.get(`${url}/post/?page=${page}&query=${query}`)
+        return axios.get(`${APIUrl}/api/post/?page=${page}&query=${query}`)
     },
     fetchArchivedPosts: () => {
         const token = localStorage.getItem('token')
-        return axios.get(`${url}/post-archived/`, {
+        return axios.get(`${APIUrl}/api/post-archived/`, {
             headers: {
                 'Authorization': `token ${token}`,
             }
@@ -21,7 +21,7 @@ export const postAPI = {
     },
     addPost: (data: any) => {
         const token = localStorage.getItem('token')
-        return axios.post(`${url}/post/`, data, {
+        return axios.post(`${APIUrl}/api/post/`, data, {
             headers: {
                 'Content-type': `multipart/form-data`,
                 'Authorization': `token ${token}`,
@@ -30,7 +30,7 @@ export const postAPI = {
     },
     deletePost: (id: number) => {
         const token = localStorage.getItem('token')
-        return axios.delete(`${url}/post-detail/${id}/`, {
+        return axios.delete(`${APIUrl}/api/post-detail/${id}/`, {
             headers: {
                 'Authorization': `token ${token}`
             }
@@ -38,7 +38,7 @@ export const postAPI = {
     },
     changePost: (post: any, id: number) => {
         const token = localStorage.getItem('token')
-        return axios.patch(`${url}/post-detail/${id}/`, post, {
+        return axios.patch(`${APIUrl}/api/post-detail/${id}/`, post, {
             headers: {
                 'Content-type': `multipart/form-data`,
                 'Authorization': `token ${token}`
@@ -46,23 +46,31 @@ export const postAPI = {
         })
     },
     getPost: (id: number) => {
-        return axios.get(`${url}/post-detail/${id}/`)
+        return axios.get(`${APIUrl}/api/post-detail/${id}/`)
     },
     incrementLike: (id: number) => {
-        return axios.post(`${url}/post-like/`, {post: id})
+        return axios.post(`${APIUrl}/api/post-like/`, {post: id})
     },
     addComment: (comment: {text: string, user: string, post: number}) => {
-        return axios.post(`${url}/post-comment/`, comment)
+        return axios.post(`${APIUrl}/api/post-comment/`, comment)
+    },
+    deleteComment: (id: number) => {
+        const token = localStorage.getItem('token')
+        return axios.delete(`${APIUrl}/api/post-comment-admin/${id}/`, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        })
     }
 }
 
 export const tagAPI = {
     fetchTags: () => {
-        return axios.get(`${url}/tag/`)
+        return axios.get(`${APIUrl}/api/tag/`)
     },
     addTag: (data: {title: string, slug: string}) => {
         const token = localStorage.getItem('token')
-        return axios.post(`${url}/tag/`, data, {
+        return axios.post(`${APIUrl}/api/tag/`, data, {
             headers: {
                 'Authorization': `token ${token}`
             }
@@ -72,11 +80,11 @@ export const tagAPI = {
 
 export const projectAPI = {
     fetchProjects: (page: number) => {
-        return axios.get(`${url}/project/?page=${page}`)
+        return axios.get(`${APIUrl}/api/project/?page=${page}`)
     },
     deleteProject: (id: number) => {
         const token = localStorage.getItem('token')
-        return axios.delete(`${url}/project-detail/${id}/`, {
+        return axios.delete(`${APIUrl}/api/project-detail/${id}/`, {
             headers: {
                 'Authorization': `token ${token}`
             }
@@ -84,7 +92,7 @@ export const projectAPI = {
     },
     addProject: (project: any) => {
         const token = localStorage.getItem('token')
-        return axios.post(`${url}/project/`, project, {
+        return axios.post(`${APIUrl}/api/project/`, project, {
             headers: {
                 'Content-type': `multipart/form-data`,
                 'Authorization': `token ${token}`
@@ -93,7 +101,7 @@ export const projectAPI = {
     },
     changeProject: (project: any, id: number) => {
         const token = localStorage.getItem('token')
-        return axios.patch(`${url}/project-detail/${id}/`, project, {
+        return axios.patch(`${APIUrl}/api/project-detail/${id}/`, project, {
             headers: {
                 'Content-type': `multipart/form-data`,
                 'Authorization': `token ${token}`
@@ -101,17 +109,17 @@ export const projectAPI = {
         })
     },
     incrementLike: (id: number) => {
-        return axios.post(`${url}/project-like/`, {project: id})
+        return axios.post(`${APIUrl}/api/project-like/`, {project: id})
     },
 }
 
 export const adminAPI = {
     adminLogin: (data: {username: string, password: string}) => {
-        return axios.post(`${url}/login/`, data)
+        return axios.post(`${APIUrl}/api/login/`, data)
     },
     checkAdmin: () => {
         const token = localStorage.getItem('token')
-        return axios.get(`${url}/check-admin/`, {
+        return axios.get(`${APIUrl}/api/check-admin/`, {
             headers: {
                 'Authorization': `token ${token}`
             }
@@ -122,18 +130,26 @@ export const adminAPI = {
 export const postNotificationAPI = {
     getNotifications: () => {
         const token = localStorage.getItem('token')
-        return axios.get(`${url}/post-notification-view/`, {
+        return axios.get(`${APIUrl}/api/post-notification-view/`, {
             headers: {
                 'Authorization': `token ${token}`
             }
         })
     },
     addNotifications: (data: PostNotification) => {
-        return axios.post(`${url}/post-notification/`, data)
+        return axios.post(`${APIUrl}/api/post-notification/`, data)
     },
     patchNotification: (data: {is_read: boolean}, id: number) => {
         const token = localStorage.getItem('token')
-        return axios.patch(`${url}/post-notification-view/?id=${id}`, data, {
+        return axios.patch(`${APIUrl}/api/post-notification-view/?id=${id}`, data, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        })
+    },
+    deleteNotification: (id: number) => {
+        const token = localStorage.getItem('token')
+        return axios.delete(`${APIUrl}/api/post-notification-view/?id=${id}`, {
             headers: {
                 'Authorization': `token ${token}`
             }

@@ -10,6 +10,7 @@ import {deleteProject, incrementProjectLike} from "../../store/reducers/actionCr
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {projectSlice} from "../../store/reducers/ProjectSlice";
 import {useNavigate} from "react-router-dom";
+import {APIUrl} from "../../api/API";
 
 interface ProjectProps {
     project: Project
@@ -41,7 +42,7 @@ const ProjectComponent: FC<ProjectProps> = ({project}) => {
         <div className='project'>
             {project.image &&
                 <div className="project__image">
-                    <img src={'https://api.kibashev.site' + project.image} alt={project.title}/>
+                    <img src={APIUrl + project.image} alt={project.title}/>
                 </div>
             }
             <div className="project__row-content">

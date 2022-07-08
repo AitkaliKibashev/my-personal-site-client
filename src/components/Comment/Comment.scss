@@ -1,6 +1,7 @@
 .comment {
   margin-bottom: 60px;
   padding-bottom: 20px;
+  position: relative;
 
   border-bottom: 1px solid #BFBFBF;
 
@@ -24,6 +25,21 @@
     overflow: hidden;
 
     color: #333333;
+  }
+
+  .comment__delete {
+    position: absolute;
+    top: 0;
+    right: 10px;
+
+    cursor: pointer;
+    transition: all 0.2s linear;
+
+    &:hover {
+      svg path {
+        stroke: #4a3aff;
+      }
+    }
   }
 
   .comment__header__row {

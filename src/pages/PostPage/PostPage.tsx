@@ -18,6 +18,7 @@ import Spinner from "../../components/common/Spinner";
 import Comment from "../../components/Comment/Comment";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import {postSlice} from "../../store/reducers/PostSlice";
+import {APIUrl} from "../../api/API";
 
 const PostPage = () => {
     const location = useLocation()
@@ -93,7 +94,7 @@ const PostPage = () => {
                     </div>
                     {post.image &&
                     <div className="post-detail__image">
-                        <img src={'https://api.kibashev.site' + post.image} alt={post.title}/>
+                        <img src={APIUrl + post.image} alt={post.title}/>
                     </div>
                     }
                     {
