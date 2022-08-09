@@ -38,7 +38,6 @@ const Portfolio = () => {
 
     return (
         <section className="portfolio">
-            {isLoading && <Spinner />}
             <div className="container">
                 <div className="portfolio__inner">
                     <h1 className="section-title">Портфолио</h1>

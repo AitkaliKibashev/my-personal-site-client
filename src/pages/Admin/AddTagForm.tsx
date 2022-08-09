@@ -14,7 +14,7 @@ const AddTagForm = () => {
             slug: slugValue
         }
 
-        tagAPI.addTag(data).then(() => {
+        tagAPI.createTag(data).then(() => {
             setTitleValue('')
             setSlugValue('')
         })

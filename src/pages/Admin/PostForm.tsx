@@ -26,8 +26,11 @@ const PostForm: React.FC<PostFormProps> = ({post}) => {
 
     useEffect(() => {
         if(post) {
-            setEditorState(post.content)
-            setTitleValue(post.title)
+            if(post.content) {
+                setEditorState(post.content)
+                setTitleValue(post.title)
+            }
+
             setShortTextValue(post.short_text)
             setPublished(post.published)
             if(post.tags) {
@@ -95,7 +98,7 @@ const PostForm: React.FC<PostFormProps> = ({post}) => {
                 <Input
                     type={'text'}
                     placeholder={'Заголовок поста'}
-                    isRequired={true}
+                    isRequired={false}
                     name={'postTitle'}
                     value={titleValue}
                     setValue={setTitleValue}

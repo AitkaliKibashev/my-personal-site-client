@@ -13,7 +13,6 @@ export const fetchPosts = (page: number) => async (dispatch: AppDispatch) => {
         dispatch(postSlice.actions.postsSuccess(response.data))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -25,7 +24,6 @@ export const fetchArchivedPosts = () => async (dispatch: AppDispatch) => {
         dispatch(postSlice.actions.postsSuccess({posts: response.data}))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -36,7 +34,6 @@ export const queryPosts = (page: number, query: string) => async (dispatch: AppD
         dispatch(postSlice.actions.postsSuccess(response.data))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -48,7 +45,6 @@ export const addPost = (post: any, isPostFromAdmin: boolean = false) => async (d
         }
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -59,7 +55,6 @@ export const getPost = (id: number) => async (dispatch: AppDispatch) => {
         dispatch(postSlice.actions.setPost(response.data))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -69,16 +64,14 @@ export const deletePost = (id: number) => async (dispatch: AppDispatch) => {
         dispatch(postSlice.actions.deletePost(id))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
 export const changePost = (post: any, id: number) => async (dispatch: AppDispatch) => {
     try {
-        await postAPI.changePost(post, id)
+        await postAPI.updatePost(post, id)
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -89,17 +82,15 @@ export const fetchTags = () => async (dispatch: AppDispatch) => {
         dispatch(tagSlice.actions.tagsSuccess(response.data))
     } catch (e) {
         dispatch(tagSlice.actions.tagsError('Error occured'))
-        console.log(e)
     }
 }
 
 export const addComment = (comment: {text: string, user: string, post: number}) => async (dispatch: AppDispatch) => {
     try {
-        const response = await postAPI.addComment(comment)
+        const response = await postAPI.createComment(comment)
         dispatch(postSlice.actions.addComment(response.data))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -111,7 +102,6 @@ export const adminLogin = (data: {username: string, password: string}) => async 
         return response
     } catch (e) {
         dispatch(adminSlice.actions.checkAdmin(false))
-        console.log(e)
     }
 }
 
@@ -121,7 +111,6 @@ export const checkAdmin = () => async (dispatch: AppDispatch) => {
         dispatch(adminSlice.actions.checkAdmin(true))
     } catch (e) {
         dispatch(adminSlice.actions.checkAdmin(false))
-        console.log(e)
     }
 }
 
@@ -133,7 +122,6 @@ export const fetchProjects = (page: number) => async (dispatch: AppDispatch) => 
         dispatch(projectSlice.actions.projectsFetchingSuccess(response.data))
     } catch (e) {
         dispatch(projectSlice.actions.projectsFetchingError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -144,25 +132,22 @@ export const deleteProject = (id: number) => async (dispatch: AppDispatch) => {
         dispatch(projectSlice.actions.deleteProject(id))
     } catch (e) {
         dispatch(projectSlice.actions.projectsFetchingError('Error occured'))
-        console.log(e)
     }
 }
 
 export const addProject = (project: any) => async (dispatch: AppDispatch) => {
     try {
-        await projectAPI.addProject(project)
+        await projectAPI.createProject(project)
     } catch (e) {
         dispatch(projectSlice.actions.projectsFetchingError('Error occured'))
-        console.log(e)
     }
 }
 
 export const changeProject = (project: any, id: number) => async (dispatch: AppDispatch) => {
     try {
-        await projectAPI.changeProject(project, id)
+        await projectAPI.updateProject(project, id)
     } catch (e) {
         dispatch(projectSlice.actions.projectsFetchingError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -172,7 +157,6 @@ export const incrementProjectLike = (id: number) => async (dispatch: AppDispatch
         dispatch(projectSlice.actions.incrementLike(id))
     } catch (e) {
         dispatch(projectSlice.actions.projectsFetchingError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -182,27 +166,24 @@ export const incrementPostLike = (id: number) => async (dispatch: AppDispatch) =
         dispatch(postSlice.actions.incrementLike(id))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
 export const addPostNotification = (data: PostNotification) => async (dispatch: AppDispatch) => {
     try {
-        const response = await postNotificationAPI.addNotifications(data)
+        const response = await postNotificationAPI.createNotifications(data)
         dispatch(postSlice.actions.addNotification(response.data))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
 export const fetchNotifications = () => async (dispatch: AppDispatch) => {
     try {
-        const response = await postNotificationAPI.getNotifications()
+        const response = await postNotificationAPI.fetchNotifications()
         dispatch(postSlice.actions.setNotifications(response.data))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -212,7 +193,6 @@ export const readNotifications = (data: {is_read: boolean}, id: number) => async
         dispatch(postSlice.actions.readNotifications())
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -222,7 +202,6 @@ export const deleteNotification = (id: number) => async (dispatch: AppDispatch) 
         dispatch(postSlice.actions.deleteNotification(id))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }
 
@@ -232,6 +211,5 @@ export const deleteComment = (id: number) => async (dispatch: AppDispatch) => {
         dispatch(postSlice.actions.deleteComment(id))
     } catch (e) {
         dispatch(postSlice.actions.postsError('Error occured'))
-        console.log(e)
     }
 }

@@ -20,13 +20,14 @@ const AboutMe = () => {
                 <ul>
                     <li>- HTML, CSS(SASS), JS</li>
                     <li>- React, Redux(RTK, Saga), TypeScript</li>
+                    <li>- Vue 3, Vuex, Composition API</li>
                     <li>- Python, Django, DRF</li>
                     <li>- KISS, DRY, SOLID</li>
                     <li>- ООП, ФП</li>
                     <li>- SSR, Rest API, WebSocket</li>
                 </ul>
                 <h2>Мое резюме</h2>
-                <a href="/">Вот тут, тык</a>
+                <a href="/cv.pdf">Вот тут, тык</a>
             </div>
         </section>
     );

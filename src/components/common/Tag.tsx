@@ -12,7 +12,6 @@ const Tag: FC<TagProps> = ({title}) => {
     const queryState = useContext(QueryContext)
 
     const onClick = () => {
-        console.log('tag:'.concat(title))
         queryState.setQuery('tag:'.concat(title))
         navigate('/search')
     }
